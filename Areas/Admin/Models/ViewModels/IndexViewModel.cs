@@ -1,7 +1,7 @@
 using System;
 using NoticiasWeb.Models;
 
-namespace NoticiasWeb.Editor.Models.ViewModels
+namespace NoticiasWeb.Admin.Models.ViewModels
 {
 
     public class IndexViewModel

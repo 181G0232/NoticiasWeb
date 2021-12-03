@@ -1,7 +1,7 @@
 using System;
 using NoticiasWeb.Models;
 
-namespace NoticiasWeb.Editor.Models.ViewModels
+namespace NoticiasWeb.Admin.Models.ViewModels
 {
 
     public class EditViewModel
@@ -9,6 +9,7 @@ namespace NoticiasWeb.Editor.Models.ViewModels
 
         public Noticia Noticia { get; set; }
         public IEnumerable<Categoria> Categorias { get; set; }
+        public IEnumerable<Editor> Editores { get; set; }
 
     }
 

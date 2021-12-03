@@ -2,13 +2,13 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NoticiasWeb.Editor.Models.ViewModels;
+using NoticiasWeb.Admin.Models.ViewModels;
 using NoticiasWeb.Models;
 
-namespace NoticiasWeb.Editor.Controllers
+namespace NoticiasWeb.Admin.Controllers
 {
 
-    [Area("Editor")]
+    [Area("Admin")]
     public class HomeController : Controller
     {
 
@@ -31,6 +31,7 @@ namespace NoticiasWeb.Editor.Controllers
             EditViewModel vm = new();
             vm.Noticia = new();
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
+            vm.Editores = Context.Editores.OrderBy(x => x.Nombre);
             return View("Edit", vm);
         }
 
@@ -47,6 +48,7 @@ namespace NoticiasWeb.Editor.Controllers
             EditViewModel vm = new();
             vm.Noticia = noticia;
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
+            vm.Editores = Context.Editores.OrderBy(x => x.Nombre);
             return View(vm);
         }
 
@@ -70,6 +72,7 @@ namespace NoticiasWeb.Editor.Controllers
             {
                 EditViewModel vm = new();
                 vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
+                vm.Editores = Context.Editores.OrderBy(x => x.Nombre);
                 return View("Edit", vm);
             }
             // ----------------------------------------------------------------------
@@ -83,7 +86,9 @@ namespace NoticiasWeb.Editor.Controllers
             }
             else
             {
+                // --------------------------------
                 // original.xxx = noticia.xxx;
+                // --------------------------------
                 Context.Update(original);
                 Context.SaveChanges();
             }
