@@ -8,6 +8,7 @@ CREATE TABLE Noticia(
     Id INT AUTO_INCREMENT,
     IdCategoria INT NOT NULL,
     IdEditor INT NOT NULL,
+    Titulo VARCHAR(50) NOT NULL,
     Fecha DATETIME NOT NULL,
     Contenido TEXT NOT NULL,
 
