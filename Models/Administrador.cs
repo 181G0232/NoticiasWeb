@@ -3,16 +3,10 @@ using System.Collections.Generic;
 
 namespace NoticiasWeb.Models
 {
-    public partial class Rol
+    public partial class Administrador
     {
-        public Rol()
-        {
-            Editors = new HashSet<Editor>();
-        }
-
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
-
-        public virtual ICollection<Editor> Editors { get; set; }
+        public string? Contrasena { get; set; }
     }
 }

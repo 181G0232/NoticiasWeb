@@ -16,10 +16,10 @@ namespace NoticiasWeb.Models
         {
         }
 
+        public virtual DbSet<Administrador> Administradores { get; set; } = null!;
         public virtual DbSet<Categoria> Categorias { get; set; } = null!;
         public virtual DbSet<Editor> Editores { get; set; } = null!;
         public virtual DbSet<Noticia> Noticias { get; set; } = null!;
-        public virtual DbSet<Rol> Rols { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +35,19 @@ namespace NoticiasWeb.Models
             modelBuilder.UseCollation("utf8mb4_general_ci")
                 .HasCharSet("utf8mb4");
 
+            modelBuilder.Entity<Administrador>(entity =>
+            {
+                entity.ToTable("Administrador");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Contrasena)
+                    .HasMaxLength(64)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nombre).HasMaxLength(30);
+            });
+
             modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnType("int(11)");
@@ -46,25 +59,11 @@ namespace NoticiasWeb.Models
             {
                 entity.ToTable("Editor");
 
-                entity.HasIndex(e => e.IdRol, "FKEditorRol");
-
                 entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.Contrasena)
-                    .HasMaxLength(64)
-                    .IsFixedLength();
 
                 entity.Property(e => e.Correo).HasMaxLength(50);
 
-                entity.Property(e => e.IdRol).HasColumnType("int(11)");
-
                 entity.Property(e => e.Nombre).HasMaxLength(30);
-
-                entity.HasOne(d => d.IdRolNavigation)
-                    .WithMany(p => p.Editors)
-                    .HasForeignKey(d => d.IdRol)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FKEditorRol");
             });
 
             modelBuilder.Entity<Noticia>(entity =>
@@ -92,19 +91,10 @@ namespace NoticiasWeb.Models
                     .HasConstraintName("FKNoticiaCategoria");
 
                 entity.HasOne(d => d.IdEditorNavigation)
-                    .WithMany(p => p.Noticias)
+                    .WithMany(p => p.Noticia)
                     .HasForeignKey(d => d.IdEditor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKNoticiaEditor");
-            });
-
-            modelBuilder.Entity<Rol>(entity =>
-            {
-                entity.ToTable("Rol");
-
-                entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.Nombre).HasMaxLength(30);
             });
 
             OnModelCreatingPartial(modelBuilder);

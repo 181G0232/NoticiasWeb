@@ -22,19 +22,18 @@ CREATE TABLE Categoria(
     PRIMARY KEY (Id)
 );
 
-CREATE TABLE Rol(
+CREATE TABLE Editor(
     Id INT AUTO_INCREMENT,
     Nombre VARCHAR(30) NOT NULL,
+    Correo VARCHAR(50) NOT NULL,
 
     PRIMARY KEY (Id)
 );
 
-CREATE TABLE Editor(
+CREATE TABLE Administrador(
     Id INT AUTO_INCREMENT,
-    IdRol INT NOT NULL,
     Nombre VARCHAR(30) NOT NULL,
-    Correo VARCHAR(50) NOT NULL,
-    Contrasena CHAR(64) NOT NULL,
+    Contrasena CHAR(64) NULL,
 
     PRIMARY KEY (Id)
 );
@@ -50,8 +49,27 @@ ALTER TABLE Noticia ADD(
         REFERENCES Editor(Id)
 );
 
-ALTER TABLE Editor ADD(
-    CONSTRAINT FKEditorRol
-        FOREIGN KEY (IdRol)
-        REFERENCES Rol(Id)
-);
+---------------------------------------------------------------
+
+INSERT INTO Categoria(Nombre) VALUES 
+    ("Android"),
+    ("IOS"),
+    ("Windows"),
+    ("Linux"),
+    ("Google"),
+    ("AMD"),
+    ("Intel"),
+    ("Microsoft"),
+    ("Xbox"),
+    ("Software"),
+    ("Hardware"),
+    ("Meta"),
+    ("VR"),
+    ("AR");
+
+INSERT INTO Editor(Nombre, Correo) VALUES 
+    ("Juan Chavez", "181G0232@rcarbonifera.tecnm.mx"),
+    ("Jean Muñoz", "181G0250@rcarbonifera.tecnm.mx");
+
+INSERT INTO Administrador(Nombre, Contrasena) VALUES 
+    ("ADMIN", "FC8252C8DC55839967C58B9AD755A59B61B67C13227DDAE4BD3F78A38BF394F7");

@@ -39,7 +39,6 @@ namespace NoticiasWeb.Admin.Controllers
         {
             var noticia = Context.Noticias.Include(x => x.IdCategoriaNavigation)
                                           .Include(x => x.IdEditorNavigation)
-                                                .ThenInclude(x => x.IdRol)
                                           .FirstOrDefault(x => x.Id == id);
             if (noticia == null)
             {
@@ -79,7 +78,6 @@ namespace NoticiasWeb.Admin.Controllers
             // ----------------------------------------------------------------------
             var original = Context.Noticias.Include(x => x.IdCategoriaNavigation)
                                            .Include(x => x.IdEditorNavigation)
-                                                .ThenInclude(x => x.IdRol)
                                            .FirstOrDefault(x => x.Id == noticia.Id);
             if (original == null)
             {
