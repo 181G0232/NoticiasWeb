@@ -22,8 +22,16 @@ CREATE TABLE Categoria(
     PRIMARY KEY (Id)
 );
 
+CREATE TABLE Rol(
+    Id INT AUTO_INCREMENT,
+    Nombre VARCHAR(30) NOT NULL,
+
+    PRIMARY KEY (Id)
+);
+
 CREATE TABLE Editor(
     Id INT AUTO_INCREMENT,
+    IdRol INT NOT NULL,
     Nombre VARCHAR(30) NOT NULL,
     Correo VARCHAR(50) NOT NULL,
     Contrasena CHAR(64) NOT NULL,
@@ -40,4 +48,10 @@ ALTER TABLE Noticia ADD(
     CONSTRAINT FKNoticiaEditor
         FOREIGN KEY (IdEditor)
         REFERENCES Editor(Id)
+);
+
+ALTER TABLE Editor ADD(
+    CONSTRAINT FKEditorRol
+        FOREIGN KEY (IdRol)
+        REFERENCES Rol(Id)
 );

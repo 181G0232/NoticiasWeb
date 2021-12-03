@@ -19,6 +19,7 @@ namespace NoticiasWeb.Models
         public virtual DbSet<Categoria> Categorias { get; set; } = null!;
         public virtual DbSet<Editor> Editores { get; set; } = null!;
         public virtual DbSet<Noticia> Noticias { get; set; } = null!;
+        public virtual DbSet<Rol> Rols { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,6 +46,8 @@ namespace NoticiasWeb.Models
             {
                 entity.ToTable("Editor");
 
+                entity.HasIndex(e => e.IdRol, "FKEditorRol");
+
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.Contrasena)
@@ -53,7 +56,15 @@ namespace NoticiasWeb.Models
 
                 entity.Property(e => e.Correo).HasMaxLength(50);
 
+                entity.Property(e => e.IdRol).HasColumnType("int(11)");
+
                 entity.Property(e => e.Nombre).HasMaxLength(30);
+
+                entity.HasOne(d => d.IdRolNavigation)
+                    .WithMany(p => p.Editors)
+                    .HasForeignKey(d => d.IdRol)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FKEditorRol");
             });
 
             modelBuilder.Entity<Noticia>(entity =>
@@ -85,6 +96,15 @@ namespace NoticiasWeb.Models
                     .HasForeignKey(d => d.IdEditor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKNoticiaEditor");
+            });
+
+            modelBuilder.Entity<Rol>(entity =>
+            {
+                entity.ToTable("Rol");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre).HasMaxLength(30);
             });
 
             OnModelCreatingPartial(modelBuilder);
