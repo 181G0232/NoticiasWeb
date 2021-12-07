@@ -96,6 +96,7 @@ namespace NoticiasWeb.Admin.Controllers
             return false;
         }
 
+        [HttpPost]
         [Route("/Admin/Save")]
         public IActionResult Save(Noticia noticia, IFormFile image)
         {
@@ -142,6 +143,26 @@ namespace NoticiasWeb.Admin.Controllers
                 image.CopyTo(imagefs);
             }
             // ---------------------------------
+            return RedirectToAction("Index");
+        }
+
+        [Route("Admin/Delete/{id}")]
+        public IActionResult Delete(int id) {
+            var noticia = Context.Noticias.FirstOrDefault(x => x.Id == id);
+            if(noticia == null) {
+                return RedirectToAction("Index");
+            }
+            return View(noticia);
+        }
+
+        [HttpPost]
+        [Route("Admin/Delete")]
+        public IActionResult Delete(int? id) {
+            var noticia = Context.Noticias.FirstOrDefault(x => x.Id == id);
+            if(noticia != null) {
+                Context.Remove(noticia);
+                Context.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
