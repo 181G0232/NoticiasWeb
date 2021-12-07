@@ -13,10 +13,12 @@ namespace NoticiasWeb.Admin.Controllers
     {
 
         public NoticiasContext Context { get; }
+        public IWebHostEnvironment Environment { get; }
 
-        public HomeController(NoticiasContext context)
+        public HomeController(NoticiasContext context, IWebHostEnvironment environment)
         {
             Context = context;
+            Environment = environment;
         }
 
         [Route("/Admin")]
@@ -69,12 +71,26 @@ namespace NoticiasWeb.Admin.Controllers
 
         public bool Validate(Noticia noticia)
         {
-            if (string.IsNullOrWhiteSpace(noticia.Titulo))
+            // La fecha no se valida, se establece
+            if (noticia.IdCategoria == 0)
+            {
+                ModelState.AddModelError("", "Por favor seleccione una categoria");
+            }
+            else if (noticia.IdEditor == 0)
+            {
+                ModelState.AddModelError("", "Por favor seleccione un editor");
+            }
+            else if (string.IsNullOrWhiteSpace(noticia.Titulo))
             {
                 ModelState.AddModelError("", "Debe proporcionar un titulo para la noticia");
             }
+            else if (string.IsNullOrEmpty(noticia.Contenido))
+            {
+                ModelState.AddModelError("", "No puede crear una noticia vacia");
+            }
             else
             {
+                noticia.Fecha = DateTime.Now;
                 return true;
             }
             return false;
@@ -98,16 +114,33 @@ namespace NoticiasWeb.Admin.Controllers
             {
                 Context.Add(noticia);
                 Context.SaveChanges();
+                // -----------------------
+                if(image == null) {
+                    string nophotopath = $"{Environment.WebRootPath}/images/nophoto.jpg";
+                    using FileStream nophotofs = new(nophotopath, FileMode.Open);
+                    //
+                    string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
+                    using FileStream imagefs = new(imagepath, FileMode.Create);
+                    nophotofs.CopyTo(imagefs);
+                }
             }
             else
             {
                 original.Titulo = noticia.Titulo;
+                original.Contenido = noticia.Contenido;
+                original.Fecha = noticia.Fecha;
+                original.IdCategoria = noticia.IdCategoria;
+                original.IdEditor = noticia.IdEditor;
                 // --------------------------------
                 Context.Update(original);
                 Context.SaveChanges();
             }
             // ---------------------------------
-            // Guardar la imagen aqui
+            if(image != null) {
+                string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
+                using FileStream imagefs = new(imagepath, FileMode.Create);
+                image.CopyTo(imagefs);
+            }
             // ---------------------------------
             return RedirectToAction("Index");
         }
