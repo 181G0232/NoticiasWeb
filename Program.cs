@@ -11,6 +11,5 @@ builder.Services.AddDbContext<NoticiasContext>(options => {
 var app = builder.Build();
 app.UseFileServer();
 app.MapDefaultControllerRoute();
-// app.MapGet("/", () => "Hello World!");
 
 app.Run();
