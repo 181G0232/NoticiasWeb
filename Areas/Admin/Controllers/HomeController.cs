@@ -92,6 +92,9 @@ namespace NoticiasWeb.Admin.Controllers
                 Context.Update(original);
                 Context.SaveChanges();
             }
+            // ---------------------------------
+            // Guardar la imagen aqui
+            // ---------------------------------
             return RedirectToAction("Index");
         }
 
