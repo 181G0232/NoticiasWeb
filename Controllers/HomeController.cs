@@ -25,9 +25,12 @@ namespace NoticiasWeb.Controllers
             IndexViewModel vm = new();
             vm.Search = search;
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
-            if(string.IsNullOrWhiteSpace(search)) {
+            if (string.IsNullOrWhiteSpace(search))
+            {
                 vm.Noticias = Context.Noticias.OrderByDescending(x => x.Fecha);
-            } else {
+            }
+            else
+            {
                 vm.Noticias = Context.Noticias.Where(x => EF.Functions.Like(x.Titulo, "%" + search + "%"))
                                               .OrderByDescending(x => x.Fecha);
             }

@@ -27,9 +27,12 @@ namespace NoticiasWeb.Admin.Controllers
             IndexViewModel vm = new();
             vm.Search = search;
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
-            if(string.IsNullOrWhiteSpace(search)) {
+            if (string.IsNullOrWhiteSpace(search))
+            {
                 vm.Noticias = Context.Noticias.OrderByDescending(x => x.Fecha);
-            } else {
+            }
+            else
+            {
                 vm.Noticias = Context.Noticias.Where(x => EF.Functions.Like(x.Titulo, "%" + search + "%"))
                                               .OrderByDescending(x => x.Fecha);
             }
@@ -66,15 +69,14 @@ namespace NoticiasWeb.Admin.Controllers
 
         public bool Validate(Noticia noticia)
         {
-            /*
-                if(...) {
-                    ModelState.AddModelError("","Mensaje");
-                }
-                ....
-                else {
-                    return true;
-                }
-            */
+            if (string.IsNullOrWhiteSpace(noticia.Titulo))
+            {
+                ModelState.AddModelError("", "Debe proporcionar un titulo para la noticia");
+            }
+            else
+            {
+                return true;
+            }
             return false;
         }
 
@@ -99,8 +101,7 @@ namespace NoticiasWeb.Admin.Controllers
             }
             else
             {
-                // --------------------------------
-                // original.xxx = noticia.xxx;
+                original.Titulo = noticia.Titulo;
                 // --------------------------------
                 Context.Update(original);
                 Context.SaveChanges();
