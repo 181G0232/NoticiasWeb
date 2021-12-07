@@ -72,4 +72,4 @@ INSERT INTO Editor(Nombre, Correo) VALUES
     ("Jean Muñoz", "181G0250@rcarbonifera.tecnm.mx");
 
 INSERT INTO Administrador(Nombre, Contrasena) VALUES 
-    ("ADMIN", "FC8252C8DC55839967C58B9AD755A59B61B67C13227DDAE4BD3F78A38BF394F7");
+    ("ADMIN", SHA2("admin",256));
