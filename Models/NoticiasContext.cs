@@ -50,6 +50,8 @@ namespace NoticiasWeb.Models
 
             modelBuilder.Entity<Categoria>(entity =>
             {
+                entity.ToTable("Categoria");
+
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre).HasMaxLength(30);
@@ -68,6 +70,8 @@ namespace NoticiasWeb.Models
 
             modelBuilder.Entity<Noticia>(entity =>
             {
+                entity.ToTable("Noticia");
+
                 entity.HasIndex(e => e.IdCategoria, "FKNoticiaCategoria");
 
                 entity.HasIndex(e => e.IdEditor, "FKNoticiaEditor");

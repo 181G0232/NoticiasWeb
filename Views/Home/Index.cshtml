@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Ejercicio de Menús</title>  
+    <title>Ejercicio de Menï¿½s</title>  
     <link href="~/stylesWeb.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3d4677a3a9.js" crossorigin="anonymous"></script>
 </head>
@@ -11,6 +11,10 @@
 
 <body>
 
+    @foreach (var cat in Model.Categorias)
+    {
+    <li><a href="#"> @(cat.Nombre)  </a></li>
+    }
 
     <nav class="desplegable">
 
