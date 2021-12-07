@@ -19,6 +19,9 @@ namespace NoticiasWeb.Admin.Controllers
             Context = context;
         }
 
+        [Route("/Admin")]
+        [Route("/Admin/Home")]
+        [Route("/Admin/Home/Index")]
         public IActionResult Index(string search)
         {
             IndexViewModel vm = new();
@@ -26,6 +29,7 @@ namespace NoticiasWeb.Admin.Controllers
             return View(vm);
         }
 
+        [Route("/Admin/New")]
         public IActionResult New()
         {
             EditViewModel vm = new();
@@ -35,6 +39,7 @@ namespace NoticiasWeb.Admin.Controllers
             return View("Edit", vm);
         }
 
+        [Route("/Admin/Edit/{id}")]
         public IActionResult Edit(int id)
         {
             var noticia = Context.Noticias.Include(x => x.IdCategoriaNavigation)
@@ -66,6 +71,7 @@ namespace NoticiasWeb.Admin.Controllers
             return false;
         }
 
+        [Route("/Admin/Save")]
         public IActionResult Save(Noticia noticia, IFormFile image)
         {
             if (!Validate(noticia))

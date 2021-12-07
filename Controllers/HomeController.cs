@@ -17,6 +17,9 @@ namespace NoticiasWeb.Controllers
             Context = context;
         }
 
+        [Route("/")]
+        [Route("/Home")]
+        [Route("/Home/Index")]
         public IActionResult Index()
         {
             IndexViewModel vm = new();
@@ -24,6 +27,7 @@ namespace NoticiasWeb.Controllers
             return View(vm);
         }
 
+        [Route("/Ver/{id}")]
         public IActionResult Noticia(string id)
         {
             string titulo = id.Replace("-", " ");
