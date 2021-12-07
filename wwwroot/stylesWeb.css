@@ -1,0 +1,55 @@
+﻿html{
+    width:100%;
+    height:100%;
+}    
+body{
+    margin:0px;
+    overflow:hidden;
+    padding-top:30px;
+}
+
+.desplegable label{
+    color:black;
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:30px;
+    height:30px;
+    text-align:center;
+    line-height:30px;
+}
+#checkdesplegable{
+    display:none;
+}
+/*El mas significa el hermano mas cercano*/
+#checkdesplegable:checked + .panel{
+    right:0px;
+}
+.desplegable .panel {
+    background-color: lightgray;
+    position: absolute;
+    width: 150px;
+    top: 30px;
+    right: -150px;
+    /*Poner espacio entre el 100% y el 30 px*/
+    height: calc(100% - 30px);
+    /*transition tab tab*/
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    /*padding 10*/
+}
+.desplegable .panel ul{
+    list-style:none;
+    padding:10px;
+}
+.desplegable .panel ul li{
+    display:block;
+}
+.desplegable .panel a{
+    color:white;
+    display:block;
+    line-height:30px;
+}
+
