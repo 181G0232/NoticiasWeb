@@ -46,6 +46,7 @@ namespace NoticiasWeb.Admin.Controllers
         {
             EditViewModel vm = new();
             vm.Noticia = new();
+            vm.Noticia.Fecha = DateTime.Now;
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
             vm.Editores = Context.Editores.OrderBy(x => x.Nombre);
             return View("Edit", vm);

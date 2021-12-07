@@ -1,0 +1,16 @@
+@model NoticiasWeb.Models.Noticia
+@{
+    Layout = "Layout";
+}
+
+<form action="~/Admin/Delete" method="POST">
+
+    <input name="Id" type="hidden" value="@(Model.Id)" required/>
+
+    <span>Seguro que quiere borrar la noticia</span> 
+    <br/>
+    <span>@(Model.Titulo)</span>
+
+    <input type="submit" value="Eliminar"/>
+
+</form>

@@ -1,0 +1,52 @@
+@model NoticiasWeb.Admin.Models.ViewModels.EditViewModel
+@{
+    Layout = "Layout";
+}
+
+<form action="~/Admin/Save" method="POST">
+
+    <input name="Id" type="hidden" value="@(Model.Noticia.Id)" required/>
+
+    <label>Fecha</label>
+    <span>@(Model.Noticia.Fecha)</span>
+    <br/>
+
+    <label>Titulo</label>
+    <input name="Titulo" type="text" value="@(Model.Noticia.Titulo)" required/>
+    <br/>
+
+    <label>Contenido</label>
+    <textarea name="Contenido" required>
+        @(Model.Noticia.Contenido)
+    </textarea>
+    <br/>
+
+    <label>Categoria</label>
+    <select name="IdCategoria">
+        <option value="0">-- Elija una categoria --</option>
+        @foreach(var cat in Model.Categorias){
+            if(cat.Id == Model.Noticia.IdCategoria) {
+                <option value="@(cat.Id)" selected>@(cat.Nombre)</option>
+            } else {
+                <option value="@(cat.Id)">@(cat.Nombre)</option>
+            }
+        }
+    </select>
+    <br/>
+
+    <label>Editor</label>
+    <select name="IdEditor">
+        <option value="0">-- Elija un editor --</option>
+        @foreach(var edi in Model.Editores){
+            if(edi.Id == Model.Noticia.IdEditor) {
+                <option value="@(edi.Id)" selected>@(edi.Nombre)</option>
+            } else {
+                <option value="@(edi.Id)">@(edi.Nombre)</option>
+            }
+        }
+    </select>
+    <br/>
+
+    <input type="submit" value="Guardar"/>
+
+</form>
