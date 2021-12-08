@@ -4,7 +4,10 @@
 }
 
 <form action="~/Home/Index" method="GET">
-    <input name="search" type="text" value="@(Model.Search)"/>
+
+    <h1 class="noti"> Noticias Recientes </h1>
+
+    <input name="search" placeholder="Buscar..." type="text" value="@(Model.Search)"/>
     <input type="submit" value="buscar"/>
 </form>
 
@@ -28,7 +31,12 @@
         </div>
     </nav>
 
+    
+
 <div class="mostradorTarjetas">
+
+    
+
 @foreach (var noti in Model.Noticias)
 {
 <div class="Cardnew">
@@ -39,7 +47,7 @@
                     { @(noti.Titulo.Substring(0, 40) + "...") } 
                     else { @(noti.Titulo) }</h1>
             <h3> <b> @(noti.IdCategoriaNavigation.Nombre) </b></h3>
-            <p> @(noti.Fecha)  </p>
+            <p> @(noti.Fecha.Year) / @(noti.Fecha.Month) / @(noti.Fecha.Day)  </p>
                 <p class="infoDesc"> @if(noti.Contenido.Length > 45) 
                     { @(noti.Contenido.Substring(0, 45) + "...") } 
                     else { @(noti.Contenido) }

@@ -1,7 +1,6 @@
 ﻿html {
     width: 100%;
     height: 100%;
-    background-color: purple;
     font-family: 'Nunito', sans-serif;
 }
 header {
@@ -22,13 +21,26 @@ header {
         color: #FFFFFF;
         margin-top: 0.5vw;
         margin-bottom: 0.5vw;
-
+        margin-left: 3vw;
     }
     header p {
         color: #FFFFFF;
         margin-top: 0vw;
-
+        margin-left: 1.5vw;
     }
+
+
+.nombre {
+    color: white;
+    display: block;
+    line-height: 30px;
+    text-decoration-line: none;
+}
+
+    .nombre:hover {
+        color: #6d6d6d;
+        line-height: 30px;
+   }
 
 
 body {
@@ -37,9 +49,27 @@ body {
     overflow-y: scroll;
     padding-top: 7vw;
 }
+    .noti {
+        margin-left: 3vw;
+    }
 
+body form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    
+}
+    body form input {
+        height: 1vw;
+        width: 10vw;
 
-
+    }
+body form input:last-child {
+    height: 1.4vw;
+    width: 5vw;
+    margin-top: 0.5vw;
+}
 
 .mostradorTarjetas {
     display: flex;
@@ -56,6 +86,8 @@ body {
     margin-left: 1%;
     margin-right: 1%;
     margin-top: 1%;
+    border-color: black;
+    border-style: solid;
 }
 
     .Cardnew :hover {
@@ -82,6 +114,7 @@ body {
 
 .info {
     margin: 0 1vw 1vw 1vw;
+    font-weight:600;
 }
 
     .info p {
@@ -172,3 +205,12 @@ body {
             line-height: 60px;
             font-size: 30px;
         }
+
+
+
+
+
+.noticiacuerpo {
+    display: flex;
+    flex-direction: column;
+}

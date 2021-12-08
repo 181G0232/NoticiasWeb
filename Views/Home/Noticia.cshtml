@@ -3,19 +3,17 @@
     Layout = "Layout";
 }
 
-
+<div class="noticiacuerpo">
 <h1> @Model.Titulo </h1>
 <br/>
-<p> Editor </p>
-<br/>
-<br/>
-<p> @Model.IdEditorNavigation.Nombre </p>
-<br/>
-<p> @Model.Fecha </p>
-<br/>
+<label> Publicado el @(Model.Fecha), por @Model.IdEditorNavigation.Nombre </label>
 <p> @Model.IdCategoriaNavigation.Nombre </p>
 <br/>
-<p> @Model.Contenido </p>
+<img src="~/Images/@(Model.Id).jpg"/>
 <br/>
+<br/>
+<p> @Model.Contenido </p>
+
+</div>
 
 
