@@ -21,13 +21,32 @@
             }
         </ul>
     </div>
+</nav>
 
+<nav class="mostradorTarjetas">
+@foreach (var cat2 in Model.Noticias)
+{
+<nav class="UserCard">
+        <img src="~/images/@(cat2.Id).jpg" />
+        <nav class="info">
+            <p> @(cat2.Titulo) </p>
+            <p> @(cat2.IdCategoriaNavigation.Nombre) </p>
+            <p> @(cat2.Fecha) </p>
+                <p> @if(cat2.Contenido.Length > 30) { @(cat2.Contenido.Substring(0, 30) + "...") } else { @(cat2.Contenido) }
+                </p>
+        </nav>
+</nav>
+}
 </nav>
 
 
-<ul>
+
+
+
+<ul class="Cardnew">
             @foreach (var cat in Model.Noticias)
             {
             <li><a href="~/Ver/@(cat.Titulo)"> @(cat.Titulo)  </a></li>
             }
 </ul>
+
