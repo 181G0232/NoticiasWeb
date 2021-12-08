@@ -225,9 +225,17 @@ body form input:last-child {
 .noticiacuerpo p:last-child {
     width: 40vw;
     word-wrap: break-word;
-    font-size: 20px;
+    font-size: 18px;
     text-align: justify;
     text-justify: inter-word;
     line-height: 30px;
     letter-spacing: 2px;
+}
+
+.imgprevia {
+    width: 24vw;
+    height: 12vw;
+    object-fit: cover;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }

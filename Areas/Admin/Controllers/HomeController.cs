@@ -138,6 +138,27 @@ namespace NoticiasWeb.Admin.Controllers
                     using FileStream imagefs = new(imagepath, FileMode.Create);
                     nophotofs.CopyTo(imagefs);
                 }
+                if (image != null)
+                {
+                    if (image.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("", "Tiene que ser jpeg prro");
+                        return View(noticia);
+                    }
+                    if (image.Length > 1024 * 1024 * 10)
+                    {
+                        ModelState.AddModelError("", "La vas a matar prro");
+                        return View(noticia);
+                    }
+                    else
+                    {
+                        var path = Environment.WebRootPath + "/images/" + noticia.Id + ".jpg";
+
+                        FileStream fs = new FileStream(path, FileMode.Create);
+                        image.CopyTo(fs);
+                        fs.Close();
+                    }
+                }
             }
             else
             {

@@ -3,7 +3,7 @@
     Layout = "Layout";
 }
 
-<form action="~/Admin/Save" method="POST">
+<form action="~/Admin/Save" method="POST" enctype="multipart/form-data">
 
     <input name="Id" type="hidden" value="@(Model.Noticia.Id)" required/>
 
@@ -45,8 +45,32 @@
             }
         }
     </select>
+
+    <br/>
+
+
+    <label> Imagen </label>
+        <input  id="fileUpdoad" name="image" type="file" accept="image/jpeg" src="~/imgs_perros/NoPhoto.jpg"/>
+        <b/>
+        <img class="imgprevia" id="imgprev" src="~/imgs_perros/NoPhoto.jpg" alt="Vista previa de la raza"/>
+
     <br/>
 
     <input type="submit" value="Guardar"/>
 
 </form>
+<script>
+    function mostrarImagen(input) {
+        if(input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.querySelector('#imgprev').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    document.querySelector("#fileUpdoad").addEventListener("change", event => {
+        mostrarImagen(event.target)
+    });
+</script>
