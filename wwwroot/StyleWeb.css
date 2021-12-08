@@ -83,15 +83,24 @@ body {
 
 
 
+.desplegable img {
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 45px;
+    height: 45px;
+    line-height: 60px;
+}
 .desplegable label {
     color: white;
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
+    width: 45px;
+    height: 45px;
+    line-height: 60px;
+    
 }
 
 #checkdesplegable {
@@ -119,6 +128,7 @@ body {
 }
 .desplegable .panel h1 {
     color: #FFFFFF;
+    text-align: center;
 }
 
     .desplegable .panel ul {
