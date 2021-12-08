@@ -23,3 +23,11 @@
     </div>
 
 </nav>
+
+
+<ul>
+            @foreach (var cat in Model.Noticias)
+            {
+            <li><a href="~/Ver/@(cat.Id)"> @(cat.Titulo)  </a></li>
+            }
+</ul>
