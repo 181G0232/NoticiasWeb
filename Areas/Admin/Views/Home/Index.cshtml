@@ -11,45 +11,42 @@
     <input type="submit" value="buscar"/>
 </form>
 
-    <nav class="desplegable">
+<a href="~/Admin/New">Nueva</a>
 
-        
+<nav class="desplegable">
 
-        <label for="checkdesplegable"><i class="fa fa-bars"></i></label>
-        <input type="checkbox" id="checkdesplegable" />
+    <label for="checkdesplegable"><i class="fa fa-bars"></i></label>
+    <input type="checkbox" id="checkdesplegable" />
 
-        <div class="panel">
+    <div class="panel">
 
-            <h1> Categorias </h1>
+        <h1> Categorias </h1>
 
-            <ul>
-                @foreach (var cat in Model.Categorias)
-                {
-                    <li><a href="~/Home/Index?categoria=@(cat.Id)"> @(cat.Nombre)  </a></li>
-                }
-            </ul>
-        </div>
-    </nav>
+        <ul>
+            @foreach (var cat in Model.Categorias)
+            {
+                <li><a href="~/Home/Index?categoria=@(cat.Id)"> @(cat.Nombre)  </a></li>
+            }
+        </ul>
+    </div>
 
-    
+</nav>
 
 <div class="mostradorTarjetas">
-
-    
 
 @foreach (var noti in Model.Noticias)
 {
 <div class="Cardnewadmin">
-        <nav class="info">
-            <h1> @if(noti.Titulo.Length > 40) 
-                    { @(noti.Titulo.Substring(0, 40) + "...") } 
-                    else { @(noti.Titulo) }</h1>
-            <h3> <b> @(noti.IdCategoriaNavigation.Nombre) </b></h3>
-            <p> @(noti.Fecha.Year) / @(noti.Fecha.Month) / @(noti.Fecha.Day)  </p>
+    <nav class="info">
+        <h1> @if(noti.Titulo.Length > 40) 
+                { @(noti.Titulo.Substring(0, 40) + "...") } 
+                else { @(noti.Titulo) }</h1>
+        <h3> <b> @(noti.IdCategoriaNavigation.Nombre) </b></h3>
+        <p> @(noti.Fecha.Year) / @(noti.Fecha.Month) / @(noti.Fecha.Day)  </p>
 
-        </nav>
-   <a href="~/Admin/Edit/@(noti.Id)">Editar</a>
-   <a href="~/Admin/Delete/@(noti.Id)">Eliminar</a>
+    </nav>
+    <a href="~/Admin/Edit/@(noti.Id)">Editar</a>
+    <a href="~/Admin/Delete/@(noti.Id)">Eliminar</a>
 </div>
 }
 </div>
