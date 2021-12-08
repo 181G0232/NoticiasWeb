@@ -39,21 +39,15 @@
 
 @foreach (var noti in Model.Noticias)
 {
-<div class="Cardnew">
-    <a href='~/Ver/@(noti.Titulo.Replace(" ","-"))'>
-        <img src="~/Images/@(noti.Id).jpg" />
+<div class="Cardnewadmin">
         <nav class="info">
             <h1> @if(noti.Titulo.Length > 40) 
                     { @(noti.Titulo.Substring(0, 40) + "...") } 
                     else { @(noti.Titulo) }</h1>
             <h3> <b> @(noti.IdCategoriaNavigation.Nombre) </b></h3>
             <p> @(noti.Fecha.Year) / @(noti.Fecha.Month) / @(noti.Fecha.Day)  </p>
-                <p class="infoDesc"> @if(noti.Contenido.Length > 45) 
-                    { @(noti.Contenido.Substring(0, 45) + "...") } 
-                    else { @(noti.Contenido) }
-                </p>
+
         </nav>
-   </a>
    <a href="~/Admin/Edit/@(noti.Id)">Editar</a>
    <a href="~/Admin/Delete/@(noti.Id)">Eliminar</a>
 </div>

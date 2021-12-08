@@ -109,7 +109,7 @@ body form input:last-child {
         width: 15vw;
         height: 12vw;
         object-fit: cover;
-        border-radius: 1vw 1vw 0 0;
+        border-radius: 0.8vw 0.8vw 0 0;
     }
 
 .info {
@@ -239,3 +239,55 @@ body form input:last-child {
     margin-top: 1vw;
     margin-bottom: 1vw;
 }
+
+
+
+
+.Cardnewadmin {
+    background-color: white;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    height: 20vw;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    border-color: black;
+    border-style: solid;
+}
+
+    .Cardnewadmin :hover {
+        color: #6d6d6d;
+    }
+
+    .Cardnewadmin h1 {
+        font-size: 125%;
+    }
+
+    .Cardnewadmin a {
+        text-decoration: none;
+        color: white;
+        text-decoration-line: none;
+        height: 30vw;
+        background-color: black;
+        border-radius: 6PX;
+        height: 1.25vw;
+        width: 6vw;
+        font-size: 12px;
+        margin-left: 1vw;
+        margin-top: 0.2vw;
+        text-align: center;
+        line-height: 20px;
+    }
+    .info p:last-child
+    {
+        height:10px;
+    }
+
+    .Cardnewadmin img {
+        width: 15vw;
+        height: 12vw;
+        object-fit: cover;
+        border-radius: 0.8vw 0.8vw 0 0;
+    }
