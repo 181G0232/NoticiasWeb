@@ -8,45 +8,43 @@
     <input type="submit" value="buscar"/>
 </form>
 
-<nav class="desplegable">
 
-    <label for="checkdesplegable"><i class="fa fa-bars"></i></label>
-    <input type="checkbox" id="checkdesplegable" />
+    <nav class="desplegable">
 
-    <div class="panel">
-        <ul>
-            @foreach (var cat in Model.Categorias)
-            {
-            <li><a href="#"> @(cat.Nombre)  </a></li>
-            }
-        </ul>
-    </div>
-</nav>
+        <label for="checkdesplegable"><i class="fa fa-bars"></i></label>
+        <input type="checkbox" id="checkdesplegable" />
 
-<nav class="mostradorTarjetas">
-@foreach (var cat2 in Model.Noticias)
+        <div class="panel">
+            <ul>
+                @foreach (var cat in Model.Categorias)
+                {
+                    <li><a href="#"> @(cat.Nombre)  </a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+<div class="mostradorTarjetas">
+@foreach (var cat in Model.Noticias)
 {
-<nav class="UserCard">
-        <img src="~/images/@(cat2.Id).jpg" />
+<div class="Cardnew">
+    <a href="~/Ver/@(cat.Titulo)">
+        <img src="~/images/@(cat.Id).jpg" />
         <nav class="info">
-            <p> @(cat2.Titulo) </p>
-            <p> @(cat2.IdCategoriaNavigation.Nombre) </p>
-            <p> @(cat2.Fecha) </p>
-                <p> @if(cat2.Contenido.Length > 30) { @(cat2.Contenido.Substring(0, 30) + "...") } else { @(cat2.Contenido) }
+            <h1> @if(cat.Titulo.Length > 40) 
+                    { @(cat.Titulo.Substring(0, 40) + "...") } 
+                    else { @(cat.Titulo) }</h1>
+            <h3> <b> @(cat.IdCategoriaNavigation.Nombre) </b></h3>
+            <p> @(cat.Fecha) </p>
+                <p class="infoDesc"> @if(cat.Contenido.Length > 45) 
+                    { @(cat.Contenido.Substring(0, 45) + "...") } 
+                    else { @(cat.Contenido) }
                 </p>
         </nav>
-</nav>
+   </a>
+</div>
 }
-</nav>
-
-
-
-
-
-<ul class="Cardnew">
-            @foreach (var cat in Model.Noticias)
-            {
-            <li><a href="~/Ver/@(cat.Titulo)"> @(cat.Titulo)  </a></li>
-            }
-</ul>
-
+</div>
