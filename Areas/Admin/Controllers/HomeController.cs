@@ -131,10 +131,10 @@ namespace NoticiasWeb.Admin.Controllers
                 // -----------------------
                 if (image == null)
                 {
-                    string nophotopath = $"{Environment.WebRootPath}/images/nophoto.jpg";
+                    string nophotopath = $"{Environment.WebRootPath}/Images/nophoto.jpg";
                     using FileStream nophotofs = new(nophotopath, FileMode.Open);
                     //
-                    string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
+                    string imagepath = $"{Environment.WebRootPath}/Images/{noticia.Id}.jpg";
                     using FileStream imagefs = new(imagepath, FileMode.Create);
                     nophotofs.CopyTo(imagefs);
                 }
@@ -153,7 +153,7 @@ namespace NoticiasWeb.Admin.Controllers
             // ---------------------------------
             if (image != null)
             {
-                string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
+                string imagepath = $"{Environment.WebRootPath}/Images/{noticia.Id}.jpg";
                 using FileStream imagefs = new(imagepath, FileMode.Create);
                 image.CopyTo(imagefs);
             }
