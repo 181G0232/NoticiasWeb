@@ -39,8 +39,8 @@ namespace NoticiasWeb.Controllers {
         public async Task<IActionResult> Login(string username, string password) {
             var user = Context.Administradores.FirstOrDefault(x => x.Nombre == username);
             if(user != null) {
-                var hash = GetHash(password);
-                if(user.Contrasena.ToUpper() == hash.ToUpper()) {
+                // var hash = GetHash(password);
+                if(user.Contrasena.ToUpper() == password.ToUpper()) {
                     List<Claim> claims = new();
                     claims.Add(new(ClaimTypes.Name, "Admin"));
                     claims.Add(new(ClaimTypes.Role, "Admin"));
