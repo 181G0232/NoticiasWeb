@@ -46,6 +46,7 @@ namespace NoticiasWeb.Admin.Controllers
         {
             EditViewModel vm = new();
             vm.Noticia = new();
+            vm.Noticia.Fecha = DateTime.Now;
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
             vm.Editores = Context.Editores.OrderBy(x => x.Nombre);
             return View("Edit", vm);
@@ -88,6 +89,10 @@ namespace NoticiasWeb.Admin.Controllers
             {
                 ModelState.AddModelError("", "No puede crear una noticia vacia");
             }
+            else if (Context.Noticias.Any(x => x.Titulo == noticia.Titulo))
+            {
+                ModelState.AddModelError("", "Este titulo ya esta siendo utilizado por otra noticia");
+            }
             else
             {
                 noticia.Fecha = DateTime.Now;
@@ -116,7 +121,8 @@ namespace NoticiasWeb.Admin.Controllers
                 Context.Add(noticia);
                 Context.SaveChanges();
                 // -----------------------
-                if(image == null) {
+                if (image == null)
+                {
                     string nophotopath = $"{Environment.WebRootPath}/images/nophoto.jpg";
                     using FileStream nophotofs = new(nophotopath, FileMode.Open);
                     //
@@ -137,7 +143,8 @@ namespace NoticiasWeb.Admin.Controllers
                 Context.SaveChanges();
             }
             // ---------------------------------
-            if(image != null) {
+            if (image != null)
+            {
                 string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
                 using FileStream imagefs = new(imagepath, FileMode.Create);
                 image.CopyTo(imagefs);
@@ -147,9 +154,11 @@ namespace NoticiasWeb.Admin.Controllers
         }
 
         [Route("Admin/Delete/{id}")]
-        public IActionResult Delete(int id) {
+        public IActionResult Delete(int id)
+        {
             var noticia = Context.Noticias.FirstOrDefault(x => x.Id == id);
-            if(noticia == null) {
+            if (noticia == null)
+            {
                 return RedirectToAction("Index");
             }
             return View(noticia);
@@ -157,9 +166,11 @@ namespace NoticiasWeb.Admin.Controllers
 
         [HttpPost]
         [Route("Admin/Delete")]
-        public IActionResult Delete(int? id) {
+        public IActionResult Delete(int? id)
+        {
             var noticia = Context.Noticias.FirstOrDefault(x => x.Id == id);
-            if(noticia != null) {
+            if (noticia != null)
+            {
                 Context.Remove(noticia);
                 Context.SaveChanges();
             }

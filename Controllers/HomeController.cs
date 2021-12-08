@@ -40,6 +40,10 @@ namespace NoticiasWeb.Controllers
         [Route("/Ver/{id}")]
         public IActionResult Noticia(string id)
         {
+            /*
+                El elemento id es el titulo de la noticia.
+                Esto es para la comodidad del usuario
+            */
             string titulo = id.Replace("-", " ");
             var noticia = Context.Noticias.Include(x => x.IdCategoriaNavigation)
                                           .Include(x => x.IdEditorNavigation)
