@@ -213,4 +213,21 @@ body form input:last-child {
 .noticiacuerpo {
     display: flex;
     flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.noticiacuerpo img {
+    width: 40vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.noticiacuerpo p:last-child {
+    width: 40vw;
+    word-wrap: break-word;
+    font-size: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 30px;
+    letter-spacing: 2px;
 }
