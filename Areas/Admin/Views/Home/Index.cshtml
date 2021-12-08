@@ -1,0 +1,61 @@
+@model NoticiasWeb.Admin.Models.ViewModels.IndexViewModel
+@{
+    Layout = "Layout";
+}
+
+<form action="~/Home/Index" method="GET">
+
+    <h1 class="noti"> Noticias Recientes </h1>
+
+    <input name="search" placeholder="Buscar..." type="text" value="@(Model.Search)"/>
+    <input type="submit" value="buscar"/>
+</form>
+
+    <nav class="desplegable">
+
+        
+
+        <label for="checkdesplegable"><i class="fa fa-bars"></i></label>
+        <input type="checkbox" id="checkdesplegable" />
+
+        <div class="panel">
+
+            <h1> Categorias </h1>
+
+            <ul>
+                @foreach (var cat in Model.Categorias)
+                {
+                    <li><a href="~/Home/Index?categoria=@(cat.Id)"> @(cat.Nombre)  </a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    
+
+<div class="mostradorTarjetas">
+
+    
+
+@foreach (var noti in Model.Noticias)
+{
+<div class="Cardnew">
+    <a href='~/Ver/@(noti.Titulo.Replace(" ","-"))'>
+        <img src="~/Images/@(noti.Id).jpg" />
+        <nav class="info">
+            <h1> @if(noti.Titulo.Length > 40) 
+                    { @(noti.Titulo.Substring(0, 40) + "...") } 
+                    else { @(noti.Titulo) }</h1>
+            <h3> <b> @(noti.IdCategoriaNavigation.Nombre) </b></h3>
+            <p> @(noti.Fecha.Year) / @(noti.Fecha.Month) / @(noti.Fecha.Day)  </p>
+                <p class="infoDesc"> @if(noti.Contenido.Length > 45) 
+                    { @(noti.Contenido.Substring(0, 45) + "...") } 
+                    else { @(noti.Contenido) }
+                </p>
+        </nav>
+   </a>
+   <a href="~/Admin/Edit/@(noti.Id)">Editar</a>
+   <a href="~/Admin/Delete/@(noti.Id)">Eliminar</a>
+</div>
+}
+</div>
