@@ -103,7 +103,7 @@ body {
     }
 
 .desplegable .panel {
-    background-color: lightgray;
+    background-color: black;
     position: absolute;
     width: 150px;
     top: 5vw;
@@ -116,6 +116,9 @@ body {
     -webkit-transition: all .5s;
     transition: all .5s;
     /*padding 10*/
+}
+.desplegable .panel h1 {
+    color: #FFFFFF;
 }
 
     .desplegable .panel ul {
@@ -131,4 +134,11 @@ body {
         color: white;
         display: block;
         line-height: 30px;
+        font-size: 20px;
+        text-decoration-line: none;
     }
+        .desplegable .panel a:hover {
+            color: #6d6d6d;
+            line-height: 60px;
+            font-size: 30px;
+        }
