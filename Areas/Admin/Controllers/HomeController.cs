@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NoticiasWeb.Admin.Models.ViewModels;
@@ -9,6 +10,7 @@ namespace NoticiasWeb.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Authorize]
     public class HomeController : Controller
     {
 
