@@ -3,6 +3,10 @@
     Layout = "Layout";
 }
 
+<form action="~/Home/Index" method="GET">
+    <input name="search" type="text" value="@(Model.Search)"/>
+    <input type="submit" value="buscar"/>
+</form>
 
     <nav class="desplegable">
 
@@ -18,7 +22,7 @@
             <ul>
                 @foreach (var cat in Model.Categorias)
                 {
-                    <li><a href="#"> @(cat.Nombre)  </a></li>
+                    <li><a href="~/Home/Index?categoria=@(cat.Id)"> @(cat.Nombre)  </a></li>
                 }
             </ul>
         </div>
@@ -30,19 +34,19 @@
     </form>
 
 <div class="mostradorTarjetas">
-@foreach (var cat in Model.Noticias)
+@foreach (var noti in Model.Noticias)
 {
 <div class="Cardnew">
-    <a href="~/Ver/@(cat.Titulo)">
-        <img src="~/images/@(cat.Id).jpg" />
+    <a href='~/Ver/@(noti.Titulo.Replace(" ","-"))'>
+        <img src="~/Images/@(noti.Id).jpg" />
         <nav class="info">
             <h1> @if(cat.Titulo.Length > 40) 
                     { @(cat.Titulo.Substring(0, 40) + "...") } 
                     else { @(cat.Titulo) }</h1>
             <h3> <b> @(cat.IdCategoriaNavigation.Nombre) </b></h3>
             <p> @(cat.Fecha) </p>
-                <p class="infoDesc"> @if(cat.Contenido.Length > 50) 
-                    { @(cat.Contenido.Substring(0, 50) + "...") } 
+                <p class="infoDesc"> @if(cat.Contenido.Length > 45) 
+                    { @(cat.Contenido.Substring(0, 45) + "...") } 
                     else { @(cat.Contenido) }
                 </p>
         </nav>

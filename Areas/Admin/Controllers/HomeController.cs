@@ -26,20 +26,26 @@ namespace NoticiasWeb.Admin.Controllers
         [Route("/Admin")]
         [Route("/Admin/Home")]
         [Route("/Admin/Home/Index")]
-        public IActionResult Index(string search)
+        public IActionResult Index(int categoria, string search)
         {
             IndexViewModel vm = new();
+            vm.Categoria = Context.Categorias.FirstOrDefault(x => x.Id == categoria);
             vm.Search = search;
             vm.Categorias = Context.Categorias.OrderBy(x => x.Nombre);
-            if (string.IsNullOrWhiteSpace(search))
-            {
-                vm.Noticias = Context.Noticias.OrderByDescending(x => x.Fecha);
-            }
-            else
-            {
-                vm.Noticias = Context.Noticias.Where(x => EF.Functions.Like(x.Titulo, "%" + search + "%"))
+            //
+            IQueryable<Noticia> noticias = null;
+            if(vm.Categoria == null) {
+                noticias = Context.Noticias.OrderByDescending(x => x.Fecha);
+            } else {
+                noticias = Context.Noticias.Where(x => x.IdCategoria == categoria)
                                               .OrderByDescending(x => x.Fecha);
             }
+            //
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                noticias = noticias.Where(x => EF.Functions.Like(x.Titulo, "%" + search + "%"));
+            }
+            vm.Noticias = noticias;
             return View(vm);
         }
 
@@ -125,10 +131,10 @@ namespace NoticiasWeb.Admin.Controllers
                 // -----------------------
                 if (image == null)
                 {
-                    string nophotopath = $"{Environment.WebRootPath}/images/nophoto.jpg";
+                    string nophotopath = $"{Environment.WebRootPath}/Images/nophoto.jpg";
                     using FileStream nophotofs = new(nophotopath, FileMode.Open);
                     //
-                    string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
+                    string imagepath = $"{Environment.WebRootPath}/Images/{noticia.Id}.jpg";
                     using FileStream imagefs = new(imagepath, FileMode.Create);
                     nophotofs.CopyTo(imagefs);
                 }
@@ -147,7 +153,7 @@ namespace NoticiasWeb.Admin.Controllers
             // ---------------------------------
             if (image != null)
             {
-                string imagepath = $"{Environment.WebRootPath}/images/{noticia.Id}.jpg";
+                string imagepath = $"{Environment.WebRootPath}/Images/{noticia.Id}.jpg";
                 using FileStream imagefs = new(imagepath, FileMode.Create);
                 image.CopyTo(imagefs);
             }
