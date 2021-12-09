@@ -48,10 +48,15 @@
 
 
     <label> Imagen </label>
-        <input  id="fileUpdoad" name="image" type="file" accept="image/jpeg" src="~/imgs_perros/NoPhoto.jpg"/>
-        <b/>
-        <img class="imgprevia" id="imgprev" src="~/imgs_perros/NoPhoto.jpg" alt="Vista previa de la raza"/>
-
+        @if(Model.Noticia.Id == 0) {
+            <input  id="fileUpdoad" name="image" type="file" accept="image/jpeg" src="~/Images/nophoto.jpg"/>
+            <br/>
+            <img class="imgprevia" id="imgprev" src="~/Images/nophoto.jpg" alt="Vista previa de la raza"/>
+        } else {
+            <input  id="fileUpdoad" name="image" type="file" accept="image/jpeg" src="~/Images/@(Model.Noticia.Id).jpg"/>
+            <br/>
+            <img class="imgprevia" id="imgprev" src="~/Images/@(Model.Noticia.Id).jpg" alt="Vista previa de la raza"/>
+        }
     <br/>
 
     <input type="submit" value="Guardar"/>
