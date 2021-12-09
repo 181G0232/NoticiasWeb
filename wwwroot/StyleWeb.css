@@ -225,11 +225,12 @@ body form input:last-child {
 .noticiacuerpo p:last-child {
     width: 40vw;
     word-wrap: break-word;
-    font-size: 18px;
+    font-size: 19px;
     text-align: justify;
     text-justify: inter-word;
     line-height: 30px;
     letter-spacing: 2px;
+    font-weight:800;
 }
 
 .imgprevia {
